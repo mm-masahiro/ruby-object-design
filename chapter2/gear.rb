@@ -1,4 +1,6 @@
 class Gear
+	# インスタンス変数は常にアクセサメソッドで包み、直接参照しないようにする
+	# attr_readerを使うと、Rubyは自動でインスタンス変数用の単純なラッパーメソッドを作る
 	attr_reader :chainring, :cog, :rim, :tire
 
 	def initialize(chainring, cog, rim, tire)
