@@ -13,7 +13,7 @@ class RevealingReferences
 		wheel.rim + (wheel.tire * 2)
 	end
 
-	wheel = Struct.new(:rim, :tire)
+	Wheel = Struct.new(:rim, :tire)
 
 	def wheelify(data)
 		data.collect { |cell| wheel.new(cell[0], cell[1])}
