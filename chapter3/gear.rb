@@ -1,10 +1,17 @@
 class Gear
+	# attr_reader :chainring, :cog, :rim, :tire
 	attr_reader :chainring, :cog, :wheel
 
-	def initialize(chainring, cog, wheel)
-		@chainring = chainring
-		@cog = cog
-		@wheel = wheel
+	# def initialize(chainring, cog, rim, tire)
+	def initialize(args)
+		# @chainring = chainring
+		# @cog = cog
+		# @wheel = Wheel.new(rim, tire)
+		# @rim = rim
+		# @tire = tire
+		@chainring = args[:chainring]
+		@cog = args[:cog]
+		@wheel = args[:wheel]
 	end
 
 	def ratio
@@ -12,7 +19,17 @@ class Gear
 	end
 
 	def gear_inches
-		ratio * wheel.diameter
+		# ratio * wheel.diameter
+		foo = some_intermediate_result * diameter
+		puts foo
+	end
+
+	def diameter
+		wheel.diameter
+	end
+
+	def wheel
+		@wheel ||= Wheel.new(rim, tire)
 	end
 end
 
@@ -37,3 +54,9 @@ end
 
 # Gearはdiameterを知るWheelを要求する
 puts Gear.new(52, 11, Wheel.new(26, 1.5)).gear_inches
+
+Gear.new(
+	:chainring => 52,
+	:cog       => 11,
+	:wheel     => Wheel.new(26, 1.5)
+).gear_inches
